@@ -38,7 +38,7 @@
             commands:
               - ./root
             resources:
-              - binaryf
+              - binary
 
           # Deno run external script
           - name: say
