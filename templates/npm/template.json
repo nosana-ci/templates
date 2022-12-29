@@ -1,0 +1,6 @@
+{
+  "name": "NPM",
+  "description": "Pipeline for your NPM project",
+  "category": "javascript",
+  "icon": "https://raw.githubusercontent.com/npm/logos/master/npm%20logo/classic/npm-2009.png"
+}
