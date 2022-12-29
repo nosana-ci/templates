@@ -1,0 +1,16 @@
+{
+    "name": "Rust",
+    "description": "Latest release of Rust",
+    "version": "1.0.0",
+    "project_url": "https://www.rust-lang.org/",
+    "logo": "https://www.rust-lang.org/static/images/rust-logo-blk.svg",
+    "author": "Nosana-CI",
+    "tags": ["rust", "embedded", "memory-safety", "wasm"],
+    "container": {
+        "type": "docker",
+        "image": "rust",
+        "tag": "latest",
+        "registry": "hub.docker.com",
+        "url": "https://hub.docker.com/_/rust"
+    }
+}
