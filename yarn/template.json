@@ -1,11 +1,11 @@
 {
-    "name": "Node.JS",
-    "description": "LTS release of Node.JS",
+    "name": "Yarn",
+    "description": "Yarn, Node.js® is an open-source, cross-platform JavaScript runtime environment.",
     "version": "1.0.0",
     "project_url": "https://nodejs.org",
     "logo": "https://nodejs.dev/static/images/logos/nodejs-new-pantone-black.svg",
     "author": "Nosana-CI",
-    "tags": ["javascript", "js", "web"],
+    "tags": ["javascript", "js", "web", "yarn", "nodejs", "node"],
     "container": {
         "type": "docker",
         "image": "node",

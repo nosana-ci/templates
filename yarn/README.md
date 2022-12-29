@@ -9,6 +9,4 @@ You can define your ENV variables in the `global` property of the template.yml f
 
 In the `commands` property, this is a property called `commands`. In `commands`, you will see the basic commands that are needed to install, build and test your project.
 
-This template assumes you are using `npm` and that the run commands defined in the pipeline are defined in your `package.json` file.
-
-Note that with this container `yarn` is also available.
+This template assumes you are using `yarn` and that the run commands defined in the pipeline are defined in your `package.json` file.
