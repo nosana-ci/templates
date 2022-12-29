@@ -1,0 +1,16 @@
+{
+    "name": "Deno",
+    "description": "The easiest, most secure JavaScript runtime.",
+    "version": "1.0.0",
+    "project_url": "https://deno.land/",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/8/84/Deno.svg",
+    "author": "Nosana-CI",
+    "tags": ["javascript", "js", "typescript", "web"],
+    "container": {
+        "type": "docker",
+        "image": "denoland/deno",
+        "tag": "latest",
+        "registry": "hub.docker.com",
+        "url": "https://hub.docker.com/denoland/deno"
+    }
+}
