@@ -1,6 +1,6 @@
 {
     "name": "Rust",
-    "description": "Latest release of Rust",
+    "description": "Rust is a systems programming language focused on safety, speed, and concurrency.",
     "version": "1.0.0",
     "project_url": "https://www.rust-lang.org/",
     "logo": "https://www.rust-lang.org/static/images/rust-logo-blk.svg",

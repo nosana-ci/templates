@@ -17,7 +17,6 @@ jobs:
   - name: install deps and build container
     commands:
       # Initialize
-      - cd 
       - cargo init hello
       - cd hello
       - cargo add rand
