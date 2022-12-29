@@ -2,7 +2,7 @@ nosana:
   description: Nosana-Node Pipeline
       
 global:
-  image: registry.hub.docker.com/library/rust:latest
+  image: registry.hub.docker.com/library/python:latest
 
   trigger:
     branch:
