@@ -1,0 +1,34 @@
+nosana:
+  description: Nosana-Node Pipeline
+      
+global:
+  image: registry.hub.docker.com/library/rust:latest
+
+  trigger:
+    branch:
+      - all
+
+  environment:
+    # Specify that apt will be used in noninteractive env. 
+    # https://www.debian.org/releases/sarge/s390/ch05s02.html.en
+    DEBIAN_FRONTEND: noninteractive
+
+jobs:
+  - name: install deps and build container
+    commands:
+      # Initialize
+      - python -m venv count
+      - . count/bin/activate
+      - pip install numpy flake8 pytest
+      - pip freeze > requirements.txt
+    artifacts:
+      - name: count
+        path: count/
+
+  - name: test
+    commands:
+      - . count/bin/activate
+      - pip install -r requirements.txt
+      - pytest -v --cov=count/
+    resources:
+      - count

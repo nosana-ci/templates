@@ -1,0 +1,16 @@
+{
+    "name": "Python",
+    "description": "Python is an interpreted, interactive, object-oriented, open-source programming language.",
+    "version": "1.0.0",
+    "project_url": "https://www.python.org/",
+    "logo": "https://www.python.org/static/community_logos/python-logo-master-v3-TM.png",
+    "author": "Nosana-CI",
+    "tags": ["python", "interpreted", "script", "OOP"],
+    "container": {
+        "type": "docker",
+        "image": "python",
+        "tag": "latest",
+        "registry": "hub.docker.com",
+        "url": "https://hub.docker.com/_/python"
+    }
+}
