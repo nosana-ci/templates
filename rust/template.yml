@@ -24,7 +24,7 @@ jobs:
       - cargo build --release
     artifacts:
       - name: target_release
-        path: $HOME/hello/target/release
+        path: hello/target/release
 
   - name: release
     commands:
