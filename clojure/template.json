@@ -3,14 +3,8 @@
     "description": "Latest release of Clojure",
     "version": "1.0.0",
     "project_url": "https://clojure.org",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Clojure_logo.svg",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Clojure_icon.svg",
     "author": "Nosana-CI",
     "tags": ["clojure", "jvm", "functional", "lisp"],
-    "container": {
-        "type": "docker",
-        "image": "clojure",
-        "tag": "latest",
-        "registry": "hub.docker.com",
-        "url": "https://hub.docker.com/_/clojure"
-    }
+    "image_url": "https://hub.docker.com/_/clojure"
 }

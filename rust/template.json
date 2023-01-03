@@ -3,14 +3,8 @@
     "description": "Rust is a systems programming language focused on safety, speed, and concurrency.",
     "version": "1.0.0",
     "project_url": "https://www.rust-lang.org/",
-    "logo": "https://www.rust-lang.org/static/images/rust-logo-blk.svg",
+    "icon": "https://www.rust-lang.org/static/images/rust-icon-blk.svg",
     "author": "Nosana-CI",
     "tags": ["rust", "embedded", "memory-safety", "wasm"],
-    "container": {
-        "type": "docker",
-        "image": "rust",
-        "tag": "latest",
-        "registry": "hub.docker.com",
-        "url": "https://hub.docker.com/_/rust"
-    }
+    "image_url": "https://hub.docker.com/_/rust"
 }
