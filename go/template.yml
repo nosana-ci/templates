@@ -16,21 +16,23 @@ global:
 jobs:
   - name: install deps and build container
     commands:
-      # Initialize
-      - go mod init example/hello
+      - pwd
+      - go mod init example/hello # Initialize
       - touch hello.go
       - echo 'package main' >> hello.go
       - echo 'import "fmt"' >> hello.go
       - echo 'func main() { fmt.Println("Hello, World!") }' >> hello.go
-      - go run .
-
+      - echo >> hello.go
+      - cat hello.go
+      - go run hello.go
+      - mkdir build
+      - go build -o build/
     artifacts:
-      - name: binary
-        path: .
+      - name: build
+        path: ./build/
 
   - name: release
     commands:
-      - go build
-      - ./hello
+      - ./build/hello
     resources:
-      - binary
+      - build

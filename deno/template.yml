@@ -1,46 +1,36 @@
 # .nosana-ci.yml
-      nosana:
-          description: Build Nosana Documentation
-          storage: IPFS
+nosana:
+    description: Build Nosana Documentation
+    storage: IPFS
 
-      global:
-          image: registry.hub.docker.com/library/node:18
+global:
+    image: registry.hub.docker.com/denoland/deno:latest
 
-          # Git, trigger on these branches
-          trigger:
-              branch:
-                  - main
-                  - develop
+    # # Git, trigger on these branches
+    trigger:
+        branch:
+            - main
+            - develop
 
-          # Environment variables
-          environment:
-              APP_ENV: production # comment here about this var
+    # Environment variables
+    environment:
+        APP_ENV: production # comment here about this var
 
-          # Allow pipeline to stop if one job fails
-          allow_failure: true # default: false
+    # Allow pipeline to stop if one job fails
+    allow_failure: true # default: false
 
-      jobs:
+jobs:
 
-          # Install dependencies
-          - name: install
-            commands:
-              - deno init
-              - deno run main.ts
-              - deno test
-              - deno bench
-              - deno compile main.ts
+    # Install dependencies
+    - name: install
+      commands:
+        - deno init
+        - deno run main.ts
+        - deno test
+        - deno bench
+        - deno compile main.ts
 
-            artifacts: # artifact for the next job
-              - name: binary
-                path: ./root
-          
-          - name:
-            commands:
-              - ./root
-            resources:
-              - binary
-
-          # Deno run external script
-          - name: say
-            commands:
-                - deno run --allow-env --allow-read npm:cowsay@1.5.0/cowthink What to eat?
+    # Deno run external script
+    - name: say
+      commands:
+          - deno run --allow-env --allow-read npm:cowsay@1.5.0/cowthink What to eat?
