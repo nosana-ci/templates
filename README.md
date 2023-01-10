@@ -1,6 +1,8 @@
 # Nosana Pipeline Templates
 
-This repository contains templates for Nosana pipelines.
+This repository is a collection of standard pipeline configurations,
+which can be directly used in your `.nosana-ci.yml` file.
+
 These are to be used for setting up a pipeline for a project.
 They are not complete pipelines, but rather starting points to build your pipeline.
 These will need to be customized for each project.
