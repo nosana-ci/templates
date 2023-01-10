@@ -1,0 +1,45 @@
+# .nosana-ci.yml
+nosana:
+    description: NPM Template
+
+global:
+    image: registry.hub.docker.com/library/node:18
+
+    # Git, trigger on these branches
+    trigger:
+        branch:
+            - main
+
+    # Environment variables
+    environment:
+        APP_ENV: production # comment here about this var
+
+jobs:
+
+    # Install dependencies
+    - name: install
+      commands:
+        - npm ci
+      artifacts: # artifact for the next job
+        - name: node_modules
+          path: ./node_modules/
+
+    # Lint and generate docs.
+    - name: generate
+      commands:
+          - npm run eslint
+          - npm run prettier
+          - npm run generate
+      resources: # artifact from previous job
+        - node_modules
+      artifacts: # artifact for deployment
+          - name: dist
+            path: ./dist/
+
+    # Upload dist
+    - name: ditribute
+      commands:
+        - npm run upload
+      resources:
+        - dist
+

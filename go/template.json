@@ -1,0 +1,10 @@
+{
+    "name": "Go",
+    "description": "Go (golang) is a general purpose, higher-level, imperative programming language.",
+    "version": "1.0.0",
+    "project_url": "https://go.dev/",
+    "icon": "https://go.dev/images/go-icon-white.svg",
+    "author": "Nosana-CI",
+    "tags": ["go", "imperative", "concurrency"],
+    "image_url": "https://hub.docker.com/_/golang"
+}
