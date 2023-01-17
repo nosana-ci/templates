@@ -21,7 +21,8 @@ jobs:
 
   - name: "Run Validator Script"
     commands:
+      - ls -lah
       - npm run validate_all
     resources:
       - name: node_modules
-        path: ./node_modules
+        path: ./
