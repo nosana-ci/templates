@@ -1,0 +1,9 @@
+{     
+  "type": "module",
+  "scripts": {
+    "validate_all": "node scripts/validate.js"
+  },
+  "dependencies": {
+    "@nosana-ci/schema-validator": "^0.0.11"
+  }
+}
