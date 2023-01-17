@@ -22,7 +22,7 @@ jobs:
   - name: yaml lint
     image: cytopia/yamllint
     commands:
-      - yamllint templates/*/template.yml
+      - templates/*/template.yml
 
   - name: Run Validator Script
     commands:
