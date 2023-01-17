@@ -1,5 +1,5 @@
 nosana:
-  description: "Template Repo Pipeline"
+  description: "Template Repo Pipeline Validate"
 
 global:
   image: registry.hub.docker.com/library/node:18
