@@ -2,7 +2,7 @@ nosana:
   description: "Template Repo Pipeline"
 
 global:
-  image: node:18.13.0
+  image: registry.hub.docker.com/library/node:18
 
   trigger:
     branch:
