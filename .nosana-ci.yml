@@ -24,7 +24,7 @@ jobs:
     commands:
       - ls -lah
       - pwd
-      - yamllint templates/*/template.yml
+      - sh -c 'yamllint templates/*/template.yml'
 
   - name: Run Validator Script
     commands:
