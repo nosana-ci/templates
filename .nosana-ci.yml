@@ -26,3 +26,6 @@ jobs:
     commands:
       - env
       - npm run validate_all
+    resources:
+      - name: node_modules
+        path: ./node_modules
