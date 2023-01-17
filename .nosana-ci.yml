@@ -1,0 +1,28 @@
+nosana:
+  description: "Template Repo Pipeline"
+
+global:
+  image: node:18.13.0
+
+  trigger:
+    branch:
+      - pipeline
+
+  environment:
+    FOO: BAR
+
+  allow_failure: false
+
+jobs:
+  - name: "Install Dependencies"
+    commands:
+      - npm ci
+      - ls -lah
+    artifacts:
+      - name: node_modules
+        path: ./node_modules
+
+  - name: "Run Validator Script"
+    commands:
+      - env
+      - npm run validate_all
