@@ -20,9 +20,9 @@ jobs:
         path: ./node_modules
 
   - name: yaml lint
-    image: cytopia/yamllint
+    image: pipelinecomponents/yamllint
     commands:
-      - templates/*/template.yml
+      - yamllint templates/*/template.yml
 
   - name: Run Validator Script
     commands:
