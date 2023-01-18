@@ -1,10 +1,9 @@
-# This is my first, very own configuration file for yamllint!
-# It extends the default conf by adjusting some options.
+---
 
 extends: default
 
 yaml-files:
-  - templates/*/template.yml*.yaml
+  - '**/template.yml'
 
 rules:
   comments-indentation:
