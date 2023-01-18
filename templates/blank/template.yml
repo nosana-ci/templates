@@ -1,0 +1,28 @@
+nosana:
+  description: Nosana-Node Pipeline
+      
+global:
+  image: registry.hub.docker.com/library/ubuntu:latest
+
+  trigger:
+    branch:
+      - all
+
+jobs:
+  - name: First Job
+    commands:
+      - export FOO=BAR
+      - echo $FOO
+      - mkdir test
+      - touch mkdir/README.md
+      - echo "Hello, World!" >> mkdir/README.md
+    artifacts:
+      - name: test
+        path: ./test/
+
+  - name: test
+    commands:
+      - cat test/README.md
+    resources:
+      - name: test
+        path: ./test/

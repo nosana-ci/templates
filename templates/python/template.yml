@@ -8,11 +8,6 @@ global:
     branch:
       - all
 
-  environment:
-    # Specify that apt will be used in noninteractive env. 
-    # https://www.debian.org/releases/sarge/s390/ch05s02.html.en
-    DEBIAN_FRONTEND: noninteractive
-
 jobs:
   - name: install deps and build container
     commands:
@@ -31,4 +26,5 @@ jobs:
       - pip install -r requirements.txt
       - pytest -v --cov=count/
     resources:
-      - count
+      - name: count
+        path: ./
