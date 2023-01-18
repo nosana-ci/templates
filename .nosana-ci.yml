@@ -22,9 +22,7 @@ jobs:
   - name: yaml lint
     image: pipelinecomponents/yamllint
     commands:
-      - ls -lah
-      - pwd
-      - sh -c 'yamllint templates/*/template.yml'
+      - yamllint
 
   - name: Run Validator Script
     commands:
