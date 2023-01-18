@@ -22,7 +22,7 @@ jobs:
   - name: yaml lint
     image: pipelinecomponents/yamllint
     commands:
-      - yamllint
+      - yamllint .
 
   - name: Run Validator Script
     commands:
