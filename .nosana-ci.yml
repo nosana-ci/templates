@@ -17,6 +17,11 @@ global:
   allow_failure: false
 
 jobs:
+  - name: Env vars
+    commands:
+      - sh -c 'echo $CLICOLOR_FORCE'
+      - sh -c 'echo $TERM'
+      - sh -c 'echo $CLICOLOR'
   - name: Install Dependencies
     commands:
       - npm ci
