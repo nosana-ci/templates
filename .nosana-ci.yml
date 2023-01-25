@@ -7,6 +7,12 @@ global:
   trigger:
     branch:
       - pipeline
+      
+  environment:
+    TERM: xterm-color
+    FORCE_COLOR: "1"
+    CLICOLOR: "1"
+    CLICOLOR_FORCE: "1"
 
   allow_failure: false
 
@@ -20,7 +26,7 @@ jobs:
         path: ./node_modules
 
   - name: yaml lint
-    image: pipelinecomponents/yamllint
+    image: registry.hub.docker.com/pipelinecomponents/yamllint
     commands:
       - yamllint .
 
