@@ -9,7 +9,7 @@ global:
       - pipeline
       
   environment:
-    TERM: xterm-color
+    TERM: ANSI
     FORCE_COLOR: "1"
     CLICOLOR: "1"
     CLICOLOR_FORCE: "1"
