@@ -12,20 +12,20 @@ global:
             - main
 
     # Allow pipeline to stop if one job fails
-    allow_failure: true # default: false
+    allow_failure: true  # default: false
 
 jobs:
 
     - name: install_build
       commands:
-        - npm ci
-        - anchor build
+          - npm ci
+          - anchor build
 
       artifacts:
-        - name: anchor_target
-          path: ./target/
-        - name: node_modules
-          path: ./node_modules/
+          - name: anchor_target
+            path: ./target/
+          - name: node_modules
+            path: ./node_modules/
 
     - name: npm_tests
       commands:
@@ -33,8 +33,8 @@ jobs:
           - npm run prettier
           - npm run check-types
       resources:
-        - name: node_modules
-          path: ./
+          - name: node_modules
+            path: ./
 
     - name: anchor_test
       commands:

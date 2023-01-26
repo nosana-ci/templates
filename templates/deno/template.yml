@@ -6,7 +6,7 @@ nosana:
 global:
     image: registry.hub.docker.com/denoland/deno:latest
 
-    # # Git, trigger on these branches
+    # Git, trigger on these branches
     trigger:
         branch:
             - main
@@ -14,23 +14,23 @@ global:
 
     # Environment variables
     environment:
-        APP_ENV: production # comment here about this var
+        APP_ENV: production  # comment here about this var
 
     # Allow pipeline to stop if one job fails
-    allow_failure: true # default: false
+    allow_failure: true  # default: false
 
 jobs:
 
     # Install dependencies
     - name: install
       commands:
-        - deno init
-        - deno run main.ts
-        - deno test
-        - deno bench
-        - deno compile main.ts
+          - deno init
+          - deno run main.ts
+          - deno test
+          - deno bench
+          - deno compile main.ts
 
     # Deno run external script
     - name: say
       commands:
-          - deno run --allow-env --allow-read npm:cowsay@1.5.0/cowthink What to eat?
+          - "deno run --allow-env --allow-read npm:cowsay@1.5.0/cowthink What to eat?"

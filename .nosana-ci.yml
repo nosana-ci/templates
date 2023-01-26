@@ -15,6 +15,11 @@ jobs:
       - name: node_modules
         path: ./node_modules
 
+  - name: yaml lint
+    image: registry.hub.docker.com/pipelinecomponents/yamllint
+    commands:
+      - yamllint .
+
   - name: Run Validator Script
     commands:
       - npm run validate_all
