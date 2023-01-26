@@ -9,3 +9,5 @@ rules:
   comments-indentation:
     level: warning
   document-start: disable
+  line-length:
+    max: 120

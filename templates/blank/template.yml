@@ -1,6 +1,6 @@
 nosana:
   description: Nosana-Node Pipeline
-      
+
 global:
   image: registry.hub.docker.com/library/ubuntu:latest
 
