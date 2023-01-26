@@ -35,4 +35,5 @@ jobs:
     commands:
       - ./build/hello
     resources:
-      - build
+      - name: build
+        path: ./

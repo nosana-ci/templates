@@ -30,4 +30,5 @@ jobs:
     commands:
       - ./release/hello
     resources:
-      - target_release
+      - name: target_release
+        path: ./

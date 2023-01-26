@@ -1,4 +1,4 @@
-import { validateJson } from '@nosana-ci/schema-validator';
+import { validateJson } from '@nosana/schema-validator';
 import * as fs from 'fs';
 import * as path from 'path';
 import { parse } from 'yaml';
@@ -13,7 +13,7 @@ fs.readdirSync('./templates').filter(folder => {
       console.log(`${folder} template is valid!`)
     } else {
       const error = result.errors[0];
-      throw new Error(`${error.schemaPath} ${error.message}`);
+      throw new Error(`${folder}: ${error.schemaPath} ${error.message}`);
     }
   }
 );

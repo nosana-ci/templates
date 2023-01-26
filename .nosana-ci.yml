@@ -3,29 +3,14 @@ nosana:
 
 global:
   image: registry.hub.docker.com/library/node:18
-
   trigger:
     branch:
-      - pipeline
-      
-  environment:
-    TERM: ANSI
-    FORCE_COLOR: "1"
-    CLICOLOR: "1"
-    CLICOLOR_FORCE: "1"
-
-  allow_failure: false
+      - main
 
 jobs:
-  - name: Env vars
-    commands:
-      - sh -c 'echo $CLICOLOR_FORCE'
-      - sh -c 'echo $TERM'
-      - sh -c 'echo $CLICOLOR'
   - name: Install Dependencies
     commands:
       - npm ci
-      - ls -lah
     artifacts:
       - name: node_modules
         path: ./node_modules
@@ -33,11 +18,10 @@ jobs:
   - name: yaml lint
     image: registry.hub.docker.com/pipelinecomponents/yamllint
     commands:
-      - yamllint .
+      - yamllint .        
 
   - name: Run Validator Script
     commands:
-      - ls -lah
       - npm run validate_all
     resources:
       - name: node_modules

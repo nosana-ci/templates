@@ -31,7 +31,8 @@ jobs:
           - npm run prettier
           - npm run generate
       resources: # artifact from previous job
-        - node_modules
+        - name: node_modules
+          path: ./
       artifacts: # artifact for deployment
           - name: dist
             path: ./dist/
@@ -41,5 +42,6 @@ jobs:
       commands:
         - npm run upload
       resources:
-        - dist
+        - name: dist
+          path: ./
 
