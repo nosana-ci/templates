@@ -1,0 +1,23 @@
+nosana:
+  description: "Template Repo Pipeline Validate"
+
+global:
+  image: registry.hub.docker.com/library/node:18
+  trigger:
+    branch:
+      - main
+
+jobs:
+  - name: Install Dependencies
+    commands:
+      - npm ci
+    artifacts:
+      - name: node_modules
+        path: ./node_modules
+
+  - name: Run Validator Script
+    commands:
+      - npm run validate_all
+    resources:
+      - name: node_modules
+        path: ./
