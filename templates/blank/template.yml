@@ -1,6 +1,6 @@
 nosana:
   description: Nosana-Node Pipeline
-      
+
 global:
   image: registry.hub.docker.com/library/ubuntu:latest
 
@@ -9,20 +9,20 @@ global:
       - all
 
 jobs:
-  - name: First Job
+  - name: Create README
     commands:
       - export FOO=BAR
       - echo $FOO
       - mkdir test
-      - touch mkdir/README.md
-      - echo "Hello, World!" >> mkdir/README.md
+      - touch test/README.md
+      - echo "Hello, World!" >> test/README.md
     artifacts:
       - name: test
-        path: ./test/
+        path: test/
 
-  - name: test
+  - name: Print README
     commands:
-      - cat test/README.md
+      - cat ./test/README.md
     resources:
       - name: test
-        path: ./test/
+        path: ./
