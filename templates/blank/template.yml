@@ -1,12 +1,15 @@
 nosana:
   description: Nosana-Node Pipeline
-
+      
 global:
   image: registry.hub.docker.com/library/ubuntu:latest
 
   trigger:
     branch:
       - all
+      
+  environment:
+    FIZZ: BUZZ
 
 jobs:
   - name: Create README
@@ -23,6 +26,10 @@ jobs:
   - name: Print README
     commands:
       - cat ./test/README.md
+      - echo $FIZZ
+      - echo $ALICE
+    environment:
+      ALICE: BOB
     resources:
       - name: test
         path: ./
