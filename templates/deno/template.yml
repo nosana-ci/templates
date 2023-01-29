@@ -1,6 +1,6 @@
 # .nosana-ci.yml
 nosana:
-    description: Build Nosana Documentation
+    description: Nosana Deno Template
 global:
     image: registry.hub.docker.com/denoland/deno:latest
 

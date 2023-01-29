@@ -1,6 +1,6 @@
 # .nosana-ci.yml
 nosana:
-    description: NPM Template
+    description: Nosana NPM Template
 
 global:
     image: registry.hub.docker.com/library/node:18

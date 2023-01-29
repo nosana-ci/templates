@@ -1,12 +1,12 @@
 nosana:
-  description: Nosana-Node Pipeline
+  description: Nosana Blank Template
 
 global:
   image: registry.hub.docker.com/library/ubuntu:latest
 
   trigger:
     branch:
-      - all
+      - main
       
   environment:
     FIZZ: BUZZ

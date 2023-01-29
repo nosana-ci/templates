@@ -1,7 +1,6 @@
 # .nosana-ci.yml
 nosana:
-    description: Build and Test Nosana Contracts
-    backend: IPFS
+    description: Nosana SPL Template
 
 global:
     image: registry.hub.docker.com/projectserum/build:v0.25.0
@@ -10,9 +9,6 @@ global:
     trigger:
         branch:
             - main
-
-    # Allow pipeline to stop if one job fails
-    allow_failure: true  # default: false
 
 jobs:
 

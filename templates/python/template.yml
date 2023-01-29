@@ -1,12 +1,12 @@
 nosana:
-  description: Nosana-Node Pipeline
+  description: Nosana Python Template
 
 global:
   image: registry.hub.docker.com/library/python:latest
 
   trigger:
     branch:
-      - all
+      - main
 
 jobs:
   - name: install deps and build container
