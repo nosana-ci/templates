@@ -33,7 +33,8 @@ jobs:
       commands:
           - yarn run test
       resources: # artifact from previous job
-        - node_modules
+        - name: node_modules
+          path: ./
       artifacts: # artifact for deployment
           - name: dist
             path: ./dist/
@@ -43,5 +44,6 @@ jobs:
       commands:
         - yarn run upload
       resources:
-        - dist
+        - name: dist
+          path: ./
 

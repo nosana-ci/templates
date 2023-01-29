@@ -1,22 +1,19 @@
 nosana:
-  description: Nosana-Node Pipeline
+  description: Nosana Go Template
       
 global:
   image: registry.hub.docker.com/library/golang:latest
 
   trigger:
     branch:
-      - all
+      - main
 
   environment:
-    # Specify that apt will be used in noninteractive env. 
-    # https://www.debian.org/releases/sarge/s390/ch05s02.html.en
-    DEBIAN_FRONTEND: noninteractive
+    APP_ENV=devnet
 
 jobs:
   - name: install deps and build container
     commands:
-      - pwd
       - go mod init example/hello # Initialize
       - touch hello.go
       - echo 'package main' >> hello.go
@@ -35,4 +32,5 @@ jobs:
     commands:
       - ./build/hello
     resources:
-      - build
+      - name: build
+        path: ./
