@@ -8,6 +8,7 @@ They are not complete pipelines, but rather starting points to build your pipeli
 These will need to be customized for each project.
 But should serve as a good starting point, and help you get started with your pipeline today.
 
+
 ## Templates
 
 ### NPM and Yarn Templates

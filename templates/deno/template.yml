@@ -11,18 +11,18 @@ global:
 
     # Environment variables
     environment:
-        APP_ENV: production # comment here about this var
+        APP_ENV: production  # comment here about this var
 
 jobs:
 
     # Init Deno
     - name: install
       commands:
-        - deno init
-        - deno run main.ts
-        - deno test
-        - deno bench
-        - deno compile main.ts
+          - deno init
+          - deno run main.ts
+          - deno test
+          - deno bench
+          - deno compile main.ts
 
     # Deno run external script
     - name: say

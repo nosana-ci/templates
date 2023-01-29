@@ -12,17 +12,16 @@ global:
 
     # Environment variables
     environment:
-        APP_ENV: production # comment here about this var
+        APP_ENV: production  # comment here about this var
 
 jobs:
-
     # Install dependencies
     - name: install
       commands:
-        - npm ci
-      artifacts: # artifact for the next job
-        - name: node_modules
-          path: ./node_modules/
+          - npm ci
+      artifacts:  # artifact for the next job
+          - name: node_modules
+            path: ./node_modules/
 
     # Lint and generate docs.
     - name: generate
@@ -40,7 +39,7 @@ jobs:
     # Upload dist
     - name: ditribute
       commands:
-        - npm run upload
+          - npm run upload
       resources:
         - name: dist
           path: ./

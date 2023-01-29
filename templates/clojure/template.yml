@@ -1,15 +1,15 @@
 nosana:
   description: Nosana-Node Pipeline
-      
+
 global:
   image: registry.hub.docker.com/library/clojure:latest
 
   trigger:
     branch:
-      - all
+      - main
 
   environment:
-    # Specify that apt will be used in noninteractive env. 
+    # Specify that apt will be used in noninteractive env.
     # https://www.debian.org/releases/sarge/s390/ch05s02.html.en
     DEBIAN_FRONTEND: noninteractive
 

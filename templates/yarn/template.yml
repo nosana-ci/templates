@@ -13,20 +13,20 @@ global:
 
     # Environment variables
     environment:
-        APP_ENV: production # comment here about this var
+        APP_ENV: production  # comment here about this var
 
     # Allow pipeline to stop if one job fails
-    allow_failure: true # default: false
+    allow_failure: true  # default: false
 
 jobs:
 
     # Install dependencies
     - name: install
       commands:
-        - yarn ci
-      artifacts: # artifact for the next job
-        - name: node_modules
-          path: ./node_modules/
+          - yarn ci
+      artifacts:  # artifact for the next job
+          - name: node_modules
+            path: ./node_modules/
 
     # Lint and generate docs.
     - name: generate
@@ -42,7 +42,7 @@ jobs:
     # Upload dist
     - name: ditribute
       commands:
-        - yarn run upload
+          - yarn run upload
       resources:
         - name: dist
           path: ./
