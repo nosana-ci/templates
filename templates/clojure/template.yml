@@ -27,10 +27,9 @@ jobs:
       - chmod +x install-clj-kondo
       - ./install-clj-kondo
       - clj-kondo --lint src --dependencies --parallel --copy-configs
-      
-      # Pull in solanj submodule
-      - git submodule init
-      - git submodule update
 
-      # Compile Nosana
-      - clj -X:compile
+      # run clojure
+      - touch hello.clj
+      - echo '(println "Hello World")' >> hello.clj
+      - echo "(println (+ 1 2 3 4 5))" >> hello.clj
+      - clj hello.clj
