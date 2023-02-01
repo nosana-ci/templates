@@ -1,36 +1,30 @@
 nosana:
   description: Nosana Go Template
-      
 global:
   image: registry.hub.docker.com/library/golang:latest
-
   trigger:
     branch:
       - main
-
   environment:
-    APP_ENV=devnet
-
+    GO_ENV: go_build_env
 jobs:
-  - name: install deps and build container
+  
+  - name: Clone and build
     commands:
-      - go mod init example/hello # Initialize
-      - touch hello.go
-      - echo 'package main' >> hello.go
-      - echo 'import "fmt"' >> hello.go
-      - echo 'func main() { fmt.Println("Hello, World!") }' >> hello.go
-      - echo >> hello.go
-      - cat hello.go
-      - go run hello.go
-      - mkdir build
-      - go build -o build/
+      - echo $GO_ENV
+      - git clone https://github.com/go-training/helloworld
+      - cd helloworld
+      - go run main.go
+      - mkdir build/
+      - go build main.go
     artifacts:
       - name: build
-        path: ./build/
-
-  - name: release
+        path: ./
+  
+  - name: Release Build
     commands:
-      - ./build/hello
+      - ls -lah
+      - ./helloworld/main
     resources:
       - name: build
         path: ./
