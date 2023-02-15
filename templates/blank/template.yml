@@ -2,34 +2,13 @@ nosana:
   description: Nosana Blank Template
 
 global:
-  image: registry.hub.docker.com/library/ubuntu:latest
+  image: alpine:latest
 
   trigger:
     branch:
       - main
-      
-  environment:
-    FIZZ: BUZZ
 
 jobs:
   - name: Create README
     commands:
-      - export FOO=BAR
-      - echo $FOO
-      - mkdir test
-      - touch test/README.md
-      - echo "Hello, World!" >> test/README.md
-    artifacts:
-      - name: test
-        path: test/
-
-  - name: Print README
-    commands:
-      - cat ./test/README.md
-      - echo $FIZZ
-      - echo $ALICE
-    environment:
-      ALICE: BOB
-    resources:
-      - name: test
-        path: ./
+      - echo NOSANA_NODE
