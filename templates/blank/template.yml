@@ -1,28 +1,14 @@
 nosana:
-  description: Nosana-Node Pipeline
+  description: Nosana Blank Template
 
 global:
-  image: registry.hub.docker.com/library/ubuntu:latest
+  image: alpine:latest
 
   trigger:
     branch:
-      - all
+      - main
 
 jobs:
-  - name: First Job
+  - name: Create README
     commands:
-      - export FOO=BAR
-      - echo $FOO
-      - mkdir test
-      - touch mkdir/README.md
-      - echo "Hello, World!" >> mkdir/README.md
-    artifacts:
-      - name: test
-        path: ./test/
-
-  - name: test
-    commands:
-      - cat test/README.md
-    resources:
-      - name: test
-        path: ./test/
+      - echo NOSANA_NODE

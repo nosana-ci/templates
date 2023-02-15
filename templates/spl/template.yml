@@ -1,18 +1,14 @@
 # .nosana-ci.yml
 nosana:
-    description: Build and Test Nosana Contracts
-    backend: IPFS
+    description: Nosana SPL Template
 
 global:
-    image: registry.hub.docker.com/projectserum/build:v0.25.0
+    image: projectserum/build:v0.25.0
 
     # Trigger pipeline on these branches:
     trigger:
         branch:
             - main
-
-    # Allow pipeline to stop if one job fails
-    allow_failure: true  # default: false
 
 jobs:
 
@@ -33,18 +29,18 @@ jobs:
           - npm run prettier
           - npm run check-types
       resources:
-          - name: node_modules
-            path: ./
+        - name: node_modules
+          path: ./
 
     - name: anchor_test
       commands:
           - solana-keygen new --no-bip39-passphrase
           - anchor test --skip-build
       resources:
-          - name: node_modules
-            path: ./
-          - name: anchor_target
-            path: ./
+        - name: node_modules
+          path: ./
+        - name: anchor_target
+          path: ./
 
     - name: cargo_test
       commands:

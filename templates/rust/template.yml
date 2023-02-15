@@ -1,12 +1,12 @@
 nosana:
-  description: Nosana-Node Pipeline
+  description: Nosana Rust Template
 
 global:
-  image: registry.hub.docker.com/library/rust:latest
+  image: rust:latest
 
   trigger:
     branch:
-      - all
+      - main
 
   environment:
     # Specify that apt will be used in noninteractive env.

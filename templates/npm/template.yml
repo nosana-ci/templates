@@ -1,9 +1,9 @@
 # .nosana-ci.yml
 nosana:
-    description: NPM Template
+    description: Nosana NPM Template
 
 global:
-    image: registry.hub.docker.com/library/node:18
+    image: node:18
 
     # Git, trigger on these branches
     trigger:
@@ -29,10 +29,10 @@ jobs:
           - npm run eslint
           - npm run prettier
           - npm run generate
-      resources:  # artifact from previous job
-          - name: node_modules
-            path: ./
-      artifacts:  # artifact for deployment
+      resources: # artifact from previous job
+        - name: node_modules
+          path: ./
+      artifacts: # artifact for deployment
           - name: dist
             path: ./dist/
 
@@ -41,5 +41,6 @@ jobs:
       commands:
           - npm run upload
       resources:
-          - name: dist
-            path: ./
+        - name: dist
+          path: ./
+
