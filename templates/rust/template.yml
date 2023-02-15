@@ -2,7 +2,7 @@ nosana:
   description: Nosana Rust Template
 
 global:
-  image: registry.hub.docker.com/library/rust:latest
+  image: rust:latest
 
   trigger:
     branch:

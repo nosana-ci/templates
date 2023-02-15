@@ -3,7 +3,7 @@ nosana:
     description: Nosana SPL Template
 
 global:
-    image: registry.hub.docker.com/projectserum/build:v0.25.0
+    image: projectserum/build:v0.25.0
 
     # Trigger pipeline on these branches:
     trigger:

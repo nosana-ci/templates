@@ -2,7 +2,7 @@ nosana:
   description: Nosana Clojure Template
 
 global:
-  image: registry.hub.docker.com/library/clojure:latest
+  image: clojure:latest
 
   trigger:
     branch:

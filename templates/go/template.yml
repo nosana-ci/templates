@@ -1,7 +1,7 @@
 nosana:
   description: Nosana Go Template
 global:
-  image: registry.hub.docker.com/library/golang:latest
+  image: golang:latest
   trigger:
     branch:
       - main

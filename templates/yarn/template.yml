@@ -3,7 +3,7 @@ nosana:
     description: Nosana Yarn Template
 
 global:
-    image: registry.hub.docker.com/library/node:18
+    image: node:18
 
     # Git, trigger on these branches
     trigger:

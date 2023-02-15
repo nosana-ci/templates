@@ -2,7 +2,7 @@
 nosana:
     description: Nosana Deno Template
 global:
-    image: registry.hub.docker.com/denoland/deno:latest
+    image: denoland/deno:latest
 
     # Git, trigger on these branches
     trigger:
