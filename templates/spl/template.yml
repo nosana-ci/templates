@@ -5,7 +5,6 @@ nosana:
 global:
     image: projectserum/build:v0.25.0
 
-    # Trigger pipeline on these branches:
     trigger:
         branch:
             - main
@@ -29,18 +28,18 @@ jobs:
           - npm run prettier
           - npm run check-types
       resources:
-        - name: node_modules
-          path: ./
+          - name: node_modules
+            path: ./
 
     - name: anchor_test
       commands:
           - solana-keygen new --no-bip39-passphrase
           - anchor test --skip-build
       resources:
-        - name: node_modules
-          path: ./
-        - name: anchor_target
-          path: ./
+          - name: node_modules
+            path: ./
+          - name: anchor_target
+            path: ./
 
     - name: cargo_test
       commands:
