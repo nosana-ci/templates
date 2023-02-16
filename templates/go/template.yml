@@ -1,5 +1,6 @@
 nosana:
   description: Nosana Go Template
+
 global:
   image: golang:latest
   trigger:
@@ -7,8 +8,9 @@ global:
       - main
   environment:
     GO_ENV: go_build_env
+
 jobs:
-  
+
   - name: Clone and build
     commands:
       - echo $GO_ENV
@@ -20,7 +22,7 @@ jobs:
     artifacts:
       - name: build
         path: ./
-  
+
   - name: Release Build
     commands:
       - ls -lah

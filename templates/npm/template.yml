@@ -5,42 +5,37 @@ nosana:
 global:
     image: node:18
 
-    # Git, trigger on these branches
     trigger:
         branch:
             - main
 
-    # Environment variables
     environment:
-        APP_ENV: production  # comment here about this var
+        APP_ENV: production
 
 jobs:
-    # Install dependencies
-    - name: install
+
+    - name: Install Dependencies
       commands:
           - npm ci
-      artifacts:  # artifact for the next job
+      artifacts:
           - name: node_modules
             path: ./node_modules/
 
-    # Lint and generate docs.
-    - name: generate
+    - name: Lint and generate docs
       commands:
           - npm run eslint
           - npm run prettier
           - npm run generate
-      resources: # artifact from previous job
-        - name: node_modules
-          path: ./
-      artifacts: # artifact for deployment
+      resources:
+          - name: node_modules
+            path: ./
+      artifacts:
           - name: dist
             path: ./dist/
 
-    # Upload dist
     - name: ditribute
       commands:
           - npm run upload
       resources:
-        - name: dist
-          path: ./
-
+          - name: dist
+            path: ./
