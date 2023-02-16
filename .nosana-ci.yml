@@ -2,7 +2,7 @@ nosana:
   description: "Template Repo Pipeline Validate"
 
 global:
-  image: node:18
+  image: registry.hub.docker.com/node:18
   trigger:
     branch:
       - main
@@ -16,7 +16,7 @@ jobs:
         path: ./node_modules
 
   - name: yaml lint
-    image: pipelinecomponents/yamllint
+    image: registry.hub.docker.com/pipelinecomponents/yamllint
     commands:
       - yamllint --format colored .
 
