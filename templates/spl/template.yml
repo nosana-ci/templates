@@ -1,53 +1,53 @@
 # .nosana-ci.yml
 nosana:
-    description: Nosana SPL Template
+  description: Nosana SPL Template
 
 global:
-    image: projectserum/build:v0.25.0
+  image: projectserum/build:v0.25.0
 
-    trigger:
-        branch:
-            - main
+  trigger:
+    branch:
+      - main
 
 jobs:
 
-    - name: install_build
-      commands:
-          - npm ci
-          - anchor build
+  - name: install_build
+    commands:
+      - npm ci
+      - anchor build
 
-      artifacts:
-          - name: anchor_target
-            path: ./target/
-          - name: node_modules
-            path: ./node_modules/
+    artifacts:
+      - name: anchor_target
+        path: ./target/
+      - name: node_modules
+        path: ./node_modules/
 
-    - name: npm_tests
-      commands:
-          - npm run eslint
-          - npm run prettier
-          - npm run check-types
-      resources:
-          - name: node_modules
-            path: ./
+  - name: npm_tests
+    commands:
+      - npm run eslint
+      - npm run prettier
+      - npm run check-types
+    resources:
+      - name: node_modules
+        path: ./
 
-    - name: anchor_test
-      commands:
-          - solana-keygen new --no-bip39-passphrase
-          - anchor test --skip-build
-      resources:
-          - name: node_modules
-            path: ./
-          - name: anchor_target
-            path: ./
+  - name: anchor_test
+    commands:
+      - solana-keygen new --no-bip39-passphrase
+      - anchor test --skip-build
+    resources:
+      - name: node_modules
+        path: ./
+      - name: anchor_target
+        path: ./
 
-    - name: cargo_test
-      commands:
-          - cargo check --resources
-          - cargo test --release
-          - cargo clippy --release
-      resources:
-          - name: node_modules
-            path: ./
-          - name: anchor_target
-            path: ./
+  - name: cargo_test
+    commands:
+      - cargo check --resources
+      - cargo test --release
+      - cargo clippy --release
+    resources:
+      - name: node_modules
+        path: ./
+      - name: anchor_target
+        path: ./

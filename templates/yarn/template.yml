@@ -1,39 +1,39 @@
 # .nosana-ci.yml
 nosana:
-    description: Nosana Yarn Template
+  description: Nosana Yarn Template
 
 global:
-    image: node:18
+  image: node:18
 
-    trigger:
-        branch:
-            - main
+  trigger:
+    branch:
+      - main
 
-    environment:
-        APP_ENV: production
+  environment:
+    APP_ENV: production
 
 jobs:
 
-    - name: Install dependencies
-      commands:
-          - yarn ci
-      artifacts:
-          - name: node_modules
-            path: ./node_modules/
+  - name: Install dependencies
+    commands:
+      - yarn ci
+    artifacts:
+      - name: node_modules
+        path: ./node_modules/
 
-    - name: Lint and generate docs
-      commands:
-          - yarn run test
-      resources:
-          - name: node_modules
-            path: ./
-      artifacts:
-          - name: dist
-            path: ./dist/
+  - name: Lint and generate docs
+    commands:
+      - yarn run test
+    resources:
+      - name: node_modules
+        path: ./
+    artifacts:
+      - name: dist
+        path: ./dist/
 
-    - name: Upload dist
-      commands:
-          - yarn run upload
-      resources:
-          - name: dist
-            path: ./
+  - name: Upload dist
+    commands:
+      - yarn run upload
+    resources:
+      - name: dist
+        path: ./

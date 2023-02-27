@@ -1,30 +1,30 @@
 # .nosana-ci.yml
 nosana:
-    description: Nosana Deno Template
+  description: Nosana Deno Template
+
 global:
-    image: denoland/deno:latest
+  image: denoland/deno:latest
 
-    # Git, trigger on these branches
-    trigger:
-        branch:
-            - main
+  # Git, trigger on these branches
+  trigger:
+    branch:
+      - main
 
-    # Environment variables
-    environment:
-        APP_ENV: production  # comment here about this var
+  # Environment variables
+  environment:
+    APP_ENV: production  # comment here about this var
 
 jobs:
+  # Init Deno
+  - name: install
+    commands:
+      - deno init
+      - deno run main.ts
+      - deno test
+      - deno bench
+      - deno compile main.ts
 
-    # Init Deno
-    - name: install
-      commands:
-          - deno init
-          - deno run main.ts
-          - deno test
-          - deno bench
-          - deno compile main.ts
-
-    # Deno run external script
-    - name: say
-      commands:
-          - deno run --allow-env --allow-read npm:cowsay@1.5.0/cowthink Nosana is Fire!
+  # Deno run external script
+  - name: say
+    commands:
+      - deno run --allow-env --allow-read npm:cowsay@1.5.0/cowthink Nosana is Fire!
