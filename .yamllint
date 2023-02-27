@@ -3,6 +3,9 @@
 extends: default
 
 yaml-files:
+  - '*.yaml'
+  - '*.yml'
+  - '.yamllint'
   - '**/template.yml'
 
 rules:
