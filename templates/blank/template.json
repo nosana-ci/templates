@@ -1,10 +1,14 @@
 {
-    "name": "Blank",
-    "description": "Blank Nosana Pipeline",
-    "version": "1.0.0",
-    "project_url": "https://docs.nosana.io/pipeline",
-    "icon": "https://nosana.io/img/Nosana_Logomark_color.png",
-    "author": "Nosana-CI",
-    "tags": ["blank", "cicd", "devops"],
-    "image_url": "https://hub.docker.com/_/ubuntu:latest"
+  "name": "Blank",
+  "description": "Blank Nosana Pipeline",
+  "version": "1.0.0",
+  "project_url": "https://docs.nosana.io/pipeline",
+  "icon": "https://nosana.io/img/Nosana_Logomark_color.png",
+  "author": "Nosana-CI",
+  "tags": [
+    "blank",
+    "cicd",
+    "devops"
+  ],
+  "image_url": "https://hub.docker.com/_/ubuntu:latest"
 }
