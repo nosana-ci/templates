@@ -1,0 +1,12 @@
+nosana:
+  description: Nosana Podman
+
+global:
+  image: nosana/podman:latest
+
+jobs:
+  - name: build
+    environment:
+      CONTAINER_HOST: tcp://localhost:8080
+    commands:
+      - docker build . -t my-container

@@ -1,0 +1,13 @@
+{
+  "name": "podman",
+  "description": "Podman is a daemonless container engine for developing, managing, and running OCI Containers on your Linux System.",
+  "version": "1.0.0",
+  "project_url": "https://podman.io/",
+  "icon": "https://github.com/containers/common/raw/main/logos/logo_circle_podman.png",
+  "author": "Nosana-CI",
+  "tags": [
+    "podman",
+    "container"
+  ],
+  "image_url": "quay.io/podman/stable"
+}

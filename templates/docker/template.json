@@ -1,0 +1,13 @@
+{
+  "name": "docker",
+  "description": "Docker is a platform designed to help developers build, share, and run modern applications.",
+  "version": "1.0.0",
+  "project_url": "https://www.docker.com/",
+  "icon": "https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png",
+  "author": "Nosana-CI",
+  "tags": [
+    "docker",
+    "container"
+  ],
+  "image_url": "https://hub.docker.com/r/nosana/podman"
+}
