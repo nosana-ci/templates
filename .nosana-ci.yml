@@ -1,5 +1,5 @@
 nosana:
-  description: "Template Repo Pipeline Validate"
+  description: "Template Repo Pipeline"
 
 global:
   image: node:18
