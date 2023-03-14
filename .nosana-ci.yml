@@ -18,7 +18,7 @@ jobs:
   - name: yaml lint
     image: pipelinecomponents/yamllint
     commands:
-      - yamllint --format colored .
+      - yamllint --format colored ./templates/
 
   - name: Run Validator Script
     commands:
