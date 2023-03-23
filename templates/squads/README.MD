@@ -38,6 +38,8 @@ If you do not have Docker or do not want to use Docker, you will need to install
 
 ## Deploy the Initial Solana Program
 
+<a href="https://asciinema.org/a/14?autoplay=1"><img src="https://asciinema.org/a/14.png" width="836"/></a>
+
 We will need to start by building and deploying an initial version of the smart contract to get started.
 Clone the repo, `cd` into it, install the dependencies and build and deploy it.
 
