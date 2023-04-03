@@ -1,58 +1,74 @@
 nosana:
-  description: Nosana x Squads Deployment
+  description: Build, test and deploy Solana Contracts through Squads Multisig
 
 global:
-  image: nosana/solana:v1.0.5
-
+  image: projectserum/build:v0.27.0
   environment:
-    # testnet / devnet / mainnet / <your-custom-sol-rpc>
-    SOLANA_URL: devnet
-    AUTHORITY_PUBKEY: <Your-PubKey-Here>
-    MULTISIG_PUBKEY: <Your-PubKey-Here>
-    SQUADS_PUBKEY: <Your-PubKey-Here>
+    SOLANA_URL: mainnet-beta # testnet / devnet / mainnet / your-custom-sol-rpc
+    PROGRAM_ID: <Your-PubKey-Here>
+    PRIVATE_KEY_PATH: /root/.config/solana/id.json
+    SQUADS_AUTHORITY_PUBKEY: <Your-PubKey-Here>
+    SQUADS_MULTISIG_PUBKEY: <Your-PubKey-Here>
+    SQUADS_PROGRAM_PUBKEY: <Your-PubKey-Here>
 
+  # Trigger pipeline on these branches:
   trigger:
-    branch:
-      - master
+    push:
+      branches: '*'
 
 jobs:
-  - name: build program
+  - name: build
     commands:
-      - npm run build:program-rust
+      - anchor build
     artifacts:
-      - name: program
-        path: dist/program/helloworld.so
+      - name: programs
+        path: target
 
-  - name: write buffer
+# Uncomment this if you want to add anchor test step
+#  - name: test
+#    secrets:
+#      - TEST_KEY
+#    commands:
+#      - echo "${TEST_KEY}" > "${PRIVATE_KEY_PATH}"
+#      - npm ci
+#      - anchor test
+#    resources:
+#      - name: programs
+#        path: .
+
+  - name: deliver
+    image: nosana/solana:v1.0.16
     secrets:
-      SOLANA_WALLET
+      - SQUADS_KEY
     commands:
-      - mkdir solana
-      - echo $SOLANA_WALLET > solana/private-key.json
-      - solana config set --url devnet --keypair solana/private-key.json
-      - solana address > solana/spill.txt
-      - solana program write-buffer /helloworld.so | tee solana/buffer.txt
+      - solana config set --url "${SOLANA_URL}"
+      - REMOTE_HASH="$(solana-verify get-program-hash "${PROGRAM_ID}")"
+      - echo "On chain hash is ${REMOTE_HASH}"
+      - LOCAL_HASH="$(solana-verify get-executable-hash "target/deploy/${PROGRAM_NAME}.so")"
+      - echo "Compiled hash is ${LOCAL_HASH}"
       - |
-        solana program set-buffer-authority \
-        "$(cut -d ' ' -f2 < solana/buffer.txt)" \
-        --new-buffer-authority $AUTHORITY_PUBKEY
-    resources:
-      - name: program
-        path: /
-    artifacts:
-      - name: solana
-        path: solana
-
-  - name: squads deploy
-    commands:
+        if [ "${REMOTE_HASH}" = "${LOCAL_HASH}" ]
+        then
+          echo Programs are equal, deployment cancelled
+          exit 0
+        else
+          echo Continue deployment
+        fi
+      - echo "${SQUADS_KEY}" > "${PRIVATE_KEY_PATH}"
+      - BUFFER_ACCOUNT="$(solana program write-buffer "target/deploy/${PROGRAM_NAME}.so" | cut -d ' ' -f2)"
+      - if [ -z "${BUFFER_ACCOUNT}" ]; then exit 1; else echo "Buffer account is ${BUFFER_ACCOUNT}"; fi
+      - solana program set-buffer-authority "${BUFFER_ACCOUNT}" --new-buffer-authority "${SQUADS_AUTHORITY_PUBKEY}"
       - |
-        nosana-cli create-program-upgrade                        \
-          --name        upgradeTest                              \
-          --private-key /solana/private-key.json                 \
-          --buffer      "$(cut -d ' ' -f2 < /solana/buffer.txt)" \
-          --spill       "$(cat /solana/spill.txt)"               \
-          --multisig    $MULTISIG_PUBKEY                         \
-          --program     $SQUADS_PUBKEY                           \
-          --authority   $AUTHORITY_PUBKEY
+        nosana-cli create-program-upgrade            \
+          --name        upgradeProgram               \
+          --private-key "${PRIVATE_KEY_PATH}"        \
+          --buffer      "${BUFFER_ACCOUNT}"          \
+          --spill       "$(solana address)"          \
+          --network     "${SOLANA_URL}"              \
+          --multisig    "${SQUADS_MULTISIG_PUBKEY}"  \
+          --program     "${SQUADS_PROGRAM_PUBKEY}"   \
+          --authority   "${SQUADS_AUTHORITY_PUBKEY}" \
+          --approve
     resources:
-      - name: solana
+      - name: programs
+        path: .
