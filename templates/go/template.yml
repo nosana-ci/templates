@@ -5,7 +5,7 @@ global:
   image: golang:latest
   trigger:
     branch:
-      - main
+      - "*"
   environment:
     GO_ENV: go_build_env
 jobs:

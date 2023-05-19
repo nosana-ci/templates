@@ -7,7 +7,7 @@ global:
 
   trigger:
     branch:
-      - main
+      - "*"
 
   environment:
     # Specify that apt will be used in noninteractive env.

@@ -5,7 +5,7 @@ global:
   image: node:18
   trigger:
     branch:
-      - main
+      - "*"
 
 jobs:
   - name: Install Dependencies
