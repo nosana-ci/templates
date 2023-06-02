@@ -1,6 +1,3 @@
-nosana:
-  description: Build, test and deploy Solana Contracts through Squads Multisig
-
 global:
   image: projectserum/build:v0.27.0
   environment:
