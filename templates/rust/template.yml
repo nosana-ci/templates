@@ -1,7 +1,3 @@
-# .nosana-ci.yml
-nosana:
-  description: Nosana Rust Template
-
 global:
   image: rust:latest
 

@@ -1,6 +1,3 @@
-nosana:
-  description: Nosana Python Template
-
 global:
   image: python:latest
 

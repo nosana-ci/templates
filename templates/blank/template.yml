@@ -1,7 +1,3 @@
-# .nosana-ci.yml
-nosana:
-  description: Nosana Blank Template
-
 global:
   image: alpine:latest
 

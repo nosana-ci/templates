@@ -1,7 +1,3 @@
-# .nosana-ci.yml
-nosana:
-  description: Nosana Deno Template
-
 global:
   image: denoland/deno:latest
 

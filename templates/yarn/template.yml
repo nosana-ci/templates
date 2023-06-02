@@ -1,7 +1,3 @@
-# .nosana-ci.yml
-nosana:
-  description: Nosana Yarn Template
-
 global:
   image: node:18
 

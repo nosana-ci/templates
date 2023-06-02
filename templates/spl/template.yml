@@ -1,7 +1,3 @@
-# .nosana-ci.yml
-nosana:
-  description: Nosana SPL Template
-
 global:
   image: projectserum/build:v0.25.0
 

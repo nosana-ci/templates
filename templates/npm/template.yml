@@ -1,7 +1,3 @@
-# .nosana-ci.yml
-nosana:
-  description: Nosana NPM Template
-
 global:
   image: node:18
 

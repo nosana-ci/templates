@@ -1,6 +1,3 @@
-# .nosana-ci.yml
-nosana:
-  description: Nosana Go Template
 global:
   image: golang:latest
   trigger:
