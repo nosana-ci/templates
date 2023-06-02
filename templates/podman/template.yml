@@ -1,6 +1,3 @@
-nosana:
-  description: Nosana Podman
-
 global:
   image: nosana/podman:latest
 
