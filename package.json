@@ -4,6 +4,6 @@
   },
   "type": "module",
   "dependencies": {
-    "@nosana/schema-validator": "^0.1.26"
+    "@nosana/schema-validator": "^0.1.27"
   }
 }
