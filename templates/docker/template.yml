@@ -1,6 +1,3 @@
-nosana:
-  description: Nosana docker in docker
-
 global:
   image: nosana/podman:latest
 
