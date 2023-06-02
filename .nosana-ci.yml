@@ -1,6 +1,3 @@
-nosana:
-  description: "Template Repo Pipeline"
-
 global:
   image: node:18
   trigger:
