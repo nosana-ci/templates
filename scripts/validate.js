@@ -1,19 +1,16 @@
-import { validateJson } from '@nosana/schema-validator';
+import { validateJobDefinition } from '@nosana/sdk';
 import * as fs from 'fs';
 import * as path from 'path';
-import { parse } from 'yaml';
-
-
 
 fs.readdirSync('./templates').filter(folder => {
-    const template = fs.readFileSync(path.join('./templates/' + folder, 'template.yml'));
-    const yml = template.toString();
-    const result = validateJson(JSON.stringify(parse(yml)));
-    if (result.valid) {
-      console.log(`${folder} template is valid!`)
+    const template = fs.readFileSync(path.join('./templates/' + folder, 'job-definition.json'));
+    const jobDefinition = template.toString();
+    const result = validateJobDefinition(JSON.parse(jobDefinition));
+    if (result.success) {
+      console.log(`${folder} job definition is valid!`)
     } else {
       const error = result.errors[0];
-      throw new Error(`${folder}: ${error.schemaPath} ${error.message}`);
+      throw new Error(`${folder}: ${error.path} - expected ${error.expected}, but found ${JSON.stringify(error.value)}`);
     }
   }
 );

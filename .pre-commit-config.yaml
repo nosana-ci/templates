@@ -13,12 +13,7 @@ repos:
   - repo: local
     hooks:
       - id: schema-validator
-        name: Nosana CI schema validator
-        entry: npm run validate_all
+        name: Nosana schema validator
+        entry: npm run validate
         language: system
         pass_filenames: false
-  - repo: https://github.com/adrienverge/yamllint.git
-    rev: v1.29.0 # https://github.com/adrienverge/yamllint/tags
-    hooks:
-      - id: yamllint
-        args: [-c=.yamllint]

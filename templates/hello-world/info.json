@@ -1,0 +1,7 @@
+{
+  "id": "hello-world",
+  "name": "Hello World",
+  "description": "Echo hello world in a ubuntu docker container",
+  "category": ["Featured"],
+  "icon": "https://nosana.io/img/Nosana_Logomark_color.png"
+}

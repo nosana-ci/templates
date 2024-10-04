@@ -1,9 +1,9 @@
 {
   "scripts": {
-    "validate_all": "node scripts/validate.js"
+    "validate": "node scripts/validate.js"
   },
   "type": "module",
   "dependencies": {
-    "@nosana/schema-validator": "^0.1.27"
+    "@nosana/sdk": "^0.3.32"
   }
 }
