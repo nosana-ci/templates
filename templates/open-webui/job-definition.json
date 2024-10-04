@@ -1,0 +1,23 @@
+{
+  "version": "0.1",
+  "type": "container",
+  "meta": {
+    "trigger": "job-builder"
+  },
+  "ops": [
+    {
+      "type": "container/run",
+      "id": "open-webui",
+      "args": {
+        "cmd": [],
+        "env": {
+          "WEBUI_AUTH": "False",
+          "WEBUI_NAME": "Nosana Chat"
+        },
+        "image": "ghcr.io/open-webui/open-webui:ollama",
+        "gpu": true,
+        "expose": 8080
+      }
+    }
+  ]
+}

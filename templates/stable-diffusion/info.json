@@ -1,0 +1,7 @@
+{
+  "id": "stable-diffusion",
+  "name": "Stable Diffusion",
+  "description": "Stable Diffusion is a latent text-to-image diffusion model",
+  "category": ["AI", "Image Generation", "GPU", "Service", "Featured"],
+  "icon": "https://res.cloudinary.com/dsht8f3ff/image/upload/v1714833633/stabilityai_fiujad.png"
+}

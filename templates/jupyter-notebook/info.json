@@ -1,0 +1,7 @@
+{
+  "id": "jupyter-notebook",
+  "name": "Jupyter Notebook",
+  "description": "Jupyter Notebook Service",
+  "category": ["GPU", "Featured", "Service"],
+  "icon": "https://seeklogo.com/images/J/jupyter-logo-A91705F539-seeklogo.com.png"
+}

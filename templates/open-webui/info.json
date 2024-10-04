@@ -1,0 +1,7 @@
+{
+  "id": "open-webui",
+  "name": "Open WebUI",
+  "description": "Open WebUI supports various LLM runners",
+  "category": ["AI", "LLM", "GPU", "Service"],
+  "icon": "https://openwebui.com/user.png"
+}

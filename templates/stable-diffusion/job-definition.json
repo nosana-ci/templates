@@ -1,0 +1,19 @@
+{
+  "version": "0.1",
+  "type": "container",
+  "meta": {
+    "trigger": "job-builder"
+  },
+  "ops": [
+    {
+      "type": "container/run",
+      "id": "stable-webui",
+      "args": {
+        "cmd": [],
+        "image": "docker.io/universonic/stable-diffusion-webui:minimal",
+        "gpu": true,
+        "expose": 8080
+      }
+    }
+  ]
+}
