@@ -1,0 +1,21 @@
+{
+  "id": "sogni-comfy",
+  "name": "Sogni Comfy Worker",
+  "description": "Run a Sogni Fast Worker on your rented GPU. Enter your Sogni API key and worker NFT ID, then monitor jobs, earnings, and settings in the Sogni dashboard.",
+  "category": ["Image Generation", "Video Generation"],
+  "icon": "https://docs.sogni.ai/assets/sogni-favicon.png",
+  "variants": [
+    {
+      "id": "24gb",
+      "name": "24 GB GPUs — RTX 3090 / 4090",
+      "description": "General image, video, and audio catalog. Choose a host with 64 GB RAM, 1 TB disk, and NVIDIA driver R580 or newer.",
+      "job_definition": "job-definition-24gb.json"
+    },
+    {
+      "id": "32gb-plus",
+      "name": "32 GB+ GPUs — RTX 5090 / RTX PRO 6000",
+      "description": "MiniMax video/music and FlashVSR upscaling. Choose a host with 64 GB+ RAM, 500 GB disk, and NVIDIA driver R580 or newer; 128 GB RAM recommended for a 96 GB GPU.",
+      "job_definition": "job-definition-32gb-plus.json"
+    }
+  ]
+}

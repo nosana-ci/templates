@@ -1,0 +1,69 @@
+{
+  "version": "0.1",
+  "type": "container",
+  "meta": {
+    "trigger": "dashboard",
+    "system_requirements": {
+      "vram_total_mb": 23552
+    }
+  },
+  "global": {
+    "env": {
+      "NOSANA_GROUP_ID": "sogni-public-template",
+      "HEALTH_PROBE_PORT": "8001"
+    }
+  },
+  "ops": [
+    {
+      "type": "container/run",
+      "id": "resources",
+      "args": {
+        "image": "docker.io/matthammond962/sogni-runtime-configurater:0.1.1",
+        "cmd": [
+          "--comfyConfig",
+          "comfy?vram=24",
+          "--comfyImage",
+          "comfy?cuda=13"
+        ]
+      },
+      "results": {
+        "docker-image": "(?<=docker-image ).*",
+        "remote-resources-chunks": "(?<=remote-resources-chunk-\\d+ ).*"
+      }
+    },
+    {
+      "type": "container/run",
+      "id": "sogni-worker",
+      "args": {
+        "image": "docker.io/%%ops.resources.results.docker-image%%",
+        "gpu": true,
+        "env": {
+          "API_KEY": "REPLACE_WITH_YOUR_SOGNI_API_KEY",
+          "NFT_TOKEN_ID": "REPLACE_WITH_YOUR_FAST_WORKER_NFT_ID"
+        },
+        "restart_policy": "unless-stopped",
+        "resources": [
+          {
+            "__spread__": "%%ops.resources.results.remote-resources-chunks%%",
+            "chunked": true
+          }
+        ],
+        "expose": [
+          {
+            "port": 8001,
+            "type": "api",
+            "health_checks": [
+              {
+                "type": "http",
+                "path": "/startup",
+                "method": "GET",
+                "expected_status": 200,
+                "continuous": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
