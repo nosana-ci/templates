@@ -4,7 +4,7 @@
   "meta": {
     "trigger": "dashboard",
     "system_requirements": {
-      "vram_total_mb": 31744
+      "vram_total_mb": 48128
     }
   },
   "global": {
@@ -21,11 +21,11 @@
         "image": "docker.io/sogni/nosana-worker-configurator@sha256:03409cc46b49cecf7164abd19801378a3303a669ac613561188df95334578287",
         "cmd": [
           "--comfyConfig",
-          "comfy?filter=minimax,flashvsr",
+          "comfy?filter=minimax",
           "--comfyImage",
           "comfy?cuda=13",
           "--minRam",
-          "47"
+          "31"
         ]
       },
       "results": {

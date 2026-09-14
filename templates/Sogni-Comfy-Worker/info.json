@@ -2,20 +2,29 @@
   "id": "sogni-comfy",
   "name": "Sogni Comfy Worker",
   "description": "Run a Sogni Fast Worker on your rented GPU. Enter your Sogni API key and worker NFT ID, then monitor jobs, earnings, and settings in the Sogni dashboard.",
-  "category": ["Image Generation", "Video Generation"],
+  "category": [
+    "Image Generation",
+    "Video Generation"
+  ],
   "icon": "https://docs.sogni.ai/assets/sogni-favicon.png",
   "variants": [
     {
-      "id": "24gb",
-      "name": "24 GB GPUs — RTX 3090 / 4090",
-      "description": "General image, video, and audio catalog. Choose a host with 64 GB RAM, 1 TB disk, and NVIDIA driver R580 or newer.",
-      "job_definition": "job-definition-24gb.json"
+      "id": "images",
+      "name": "Krea images + Identity — 16 GB+ GPU",
+      "description": "Krea 2 Turbo, Dark Beast Krea 2 v3 and both Identity Edit variants. About 35.4 GB of models; 31 GiB available RAM. CUDA 13 / R580+ driver.",
+      "job_definition": "job-definition-images.json"
     },
     {
-      "id": "32gb-plus",
-      "name": "32 GB+ GPUs — RTX 5090 / RTX PRO 6000",
-      "description": "MiniMax video/music and FlashVSR upscaling. Choose a host with 64 GB+ RAM, 500 GB disk, and NVIDIA driver R580 or newer; 128 GB RAM recommended for a 96 GB GPU.",
-      "job_definition": "job-definition-32gb-plus.json"
+      "id": "minimax-32gb",
+      "name": "MiniMax — 32 GB GPU (RTX 5090)",
+      "description": "MiniMax H3 video and Music 3. About 110 GB of models; 47 GiB available RAM for Turbo on a 32 GB GPU. CUDA 13 / R580+ driver.",
+      "job_definition": "job-definition-minimax-32gb.json"
+    },
+    {
+      "id": "minimax-48gb-plus",
+      "name": "MiniMax — 48 GB+ GPU (including RTX PRO 6000)",
+      "description": "MiniMax H3 video and Music 3. About 110 GB of models; 31 GiB available RAM on larger GPUs. CUDA 13 / R580+ driver.",
+      "job_definition": "job-definition-minimax-48gb-plus.json"
     }
   ]
 }

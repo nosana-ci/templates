@@ -17,22 +17,37 @@ Use one unique NFT for each running GPU worker. Stop any worker already using th
 
 Keep the configured deployment **confidential**. Your API key must not be published in a GitHub file, shared job definition, public IPFS upload, screenshot, or support message. See [Nosana confidential jobs](https://learn.nosana.com/deployments/jobs/job-definition/confidential.html). The public template contains placeholders only.
 
-## Choose your GPU preset
+## Choose your workload
 
-| Preset | GPU | Host RAM | Disk capacity to plan for |
+Start with a focused bundle of popular models. Rental workers do not need the entire Sogni catalog: extra model families add download time and storage cost. Choose the work to serve first, then a compatible GPU and host.
+
+| Preset | GPU | Minimum RAM available to setup | Model downloads |
 | --- | --- | --- | --- |
-| **24 GB GPUs** | RTX 3090 / 4090 | 64 GB recommended | 1 TB |
-| **32 GB+ GPUs** | RTX 5090 / RTX PRO 6000 | 64 GB recommended; 128 GB for a 96 GB GPU | 500 GB |
+| **Krea images + Identity** | 16 GB+ NVIDIA GPU; RTX 5080, 3090, 4090, 5090 or larger | 31 GiB | About 35.4 GB |
+| **MiniMax — 32 GB GPU** | RTX 5090 | 47 GiB | About 110 GB |
+| **MiniMax — 48 GB+ GPU** | Such as RTX PRO 6000 Blackwell 96 GB | 31 GiB | About 110 GB |
 
-Both presets use the official CUDA 13 worker and require **NVIDIA driver R580 or newer** on an x86-64 Linux host. Choose a GPU market whose hosts meet that requirement. GPU model alone does not establish the driver, available RAM, or free disk space.
+The image bundle includes **Krea 2 Turbo**, **Dark Beast Krea 2 v3**, **Krea 2 Identity Edit v1.2**, and **Dark Beast Krea 2 Identity Edit v1.2**. Both MiniMax presets contain the same **MiniMax H3 video and Music 3** files. Shared files are downloaded once. The worker serves only workflows eligible for its hardware and local files.
 
-The 24 GB preset preloads the general image, video, and audio catalog for that GPU size. The 32 GB+ preset preloads MiniMax video/music and FlashVSR upscaling, matching Sogni's larger-GPU Nosana catalog. The worker serves only workflows eligible for the actual hardware and available model files; a larger GPU does not unlock every model automatically.
+System RAM is separate from GPU VRAM. MiniMax Turbo, including FastH3, needs at least 47 GiB of system RAM on 24/32 GB GPUs; larger GPUs use the 31 GiB floor. The preset's setup check applies to RAM available inside the container, which may be less than the host's advertised total. A large GPU does not imply a proportionally large host-RAM requirement.
 
-As of September 2026, the model files alone total approximately **529 GB** and **116 GB**, respectively. These are planning snapshots, not quotas. Allow additional space for container images, caches, temporary files, and catalog growth. Setup requires at least **47 GiB of RAM visible to its container** and rejects smaller hosts before the worker starts. It does not enforce free disk space or driver requirements; confirm them when choosing a market and inspect the assigned host before relying on the worker. A rejected host can cause a retry or delay; the RAM check cannot reserve a suitable node.
+Download sizes are unique model-file totals from the live catalog on **September 14, 2026**, not total disk requirements or measurements of a host's cache. Allow additional free space for the worker image, temporary downloads, generated files, and catalog changes. Choose storage for that bundle and inspect the space actually available on the assigned host.
+
+All presets use the CUDA 13 worker and require [NVIDIA driver R580 or newer](https://docs.nvidia.com/deploy/cuda-compatibility/minor-version-compatibility.html) on an x86-64 Linux host. Setup enforces the preset's RAM floor but does not validate the driver or free disk space. A RAM rejection can cause a retry or delay; it cannot reserve a suitable node.
+
+For a smaller bundle, change the value after `--comfyConfig` in the **resources** operation before deploying:
+
+| Work to serve | Catalog selector | Model downloads |
+| --- | --- | --- |
+| Krea 2 Turbo only | `comfy?filter=krea2_turbo_fp8_scaled` | About 19.4 GB |
+| Dark Beast Krea 2 v3 only | `comfy?filter=dark_beast_krea2_fp8` | About 20.4 GB |
+| MiniMax FastH3 video only | `comfy?filter=minimax-h3-shared,minimax-h3-fastvideo-int8` | About 45.1 GB |
+
+Single-image bundles omit Identity Edit. FastH3-only includes its shared dependencies and omits other MiniMax tiers and music; retain the MiniMax preset's RAM check for your GPU class.
 
 ## Deploy in Nosana
 
-1. Open **Create Deployment** in [Nosana Deploy](https://deploy.nosana.com), select **Sogni Comfy Worker**, and choose the preset matching your GPU.
+1. Open **Create Deployment** in [Nosana Deploy](https://deploy.nosana.com), select **Sogni Comfy Worker**, and choose your workload preset. As of September 2026, this entry is proposed in [PR #172](https://github.com/nosana-ci/pipeline-templates/pull/172); these dashboard steps apply once it is available in the catalog.
 2. Choose a suitable GPU market. Keep **Replicas = 1** and use the **Infinite** strategy for an ongoing worker.
 3. In the job definition form, expand **Environment variables** on **sogni-worker**. Replace both placeholders:
 
@@ -41,7 +56,7 @@ As of September 2026, the model files alone total approximately **529 GB** and *
    | `API_KEY` | Your Sogni API key |
    | `NFT_TOKEN_ID` | Your unique numeric Fast Worker NFT token ID |
 
-4. Leave the resource loader, image, model mounts, and health endpoint at their template defaults. Review the deployment's confidentiality and rental cost, then deploy.
+4. Keep the chosen preset's setup and health settings, apart from an optional smaller bundle above. Review the deployment's confidentiality and rental cost, then deploy.
 5. Follow the download progress in Nosana. A cold host can take tens of minutes or longer to fetch its model cache. Avoid repeatedly restarting a progressing download.
 6. Open [Sogni Workers](https://dashboard.sogni.ai/fast-workers/), select your NFT, and confirm its version, GPU, online status, and available models. Check **Worker Health** and **Job History** as work arrives.
 
@@ -49,7 +64,7 @@ For another GPU, create another one-replica deployment with a different NFT toke
 
 ## Manage the worker
 
-Use the Sogni dashboard's **Settings** tab for supported workflow preferences and other operator controls. See the [dashboard guide](https://docs.sogni.ai/run-a-worker/fast-worker/worker-dashboard/) and [advanced configuration](https://docs.sogni.ai/run-a-worker/fast-worker/sogni-fast-worker-advanced-configuration/). Dashboard preferences cannot add files to Nosana's preloaded resource bundle; keep this template's managed download defaults unless following a specific Sogni recommendation.
+Use the Sogni dashboard's **Settings** tab for supported workflow preferences and other operator controls. See the [dashboard guide](https://docs.sogni.ai/run-a-worker/fast-worker/worker-dashboard/) and [advanced configuration](https://docs.sogni.ai/run-a-worker/fast-worker/sogni-fast-worker-advanced-configuration/). Preferences choose among models already available to the worker. Change the Nosana preset or catalog selector for a replacement job to change its preloaded files. Check Job History before expanding into more model families.
 
 The Sogni-owned [resource loader](https://hub.docker.com/r/sogni/nosana-worker-configurator/tags?name=0.1.0) is pinned to the immutable digest of version **0.1.0**. It resolves Sogni's recommended, versioned worker image on each new Nosana job. A running job stays on its existing image. Updates take effect when Nosana starts a new job; a replacement may need to queue for capacity and download models again. Review the [worker release notes](https://docs.sogni.ai/run-a-worker/fast-worker/release-notes/comfy-worker/) before an intentional update.
 
