@@ -1,0 +1,87 @@
+{
+  "version": "0.1",
+  "type": "container",
+  "global": {
+    "variables": {
+      "MAX_MODEL_LEN": "32768",
+      "GPU_MEM_UTIL": "0.90",
+      "MAX_NUM_SEQS": "1024"
+    }
+  },
+  "ops": [
+    {
+      "type": "container/run",
+      "id": "server",
+      "args": {
+        "image": "docker.io/vllm/vllm-openai:v0.26.0",
+        "gpu": true,
+        "entrypoint": [
+          "vllm",
+          "serve"
+        ],
+        "cmd": [
+          "/models/gemma-4-26b-a4b",
+          "--served-model-name",
+          "google/gemma-4-26b-a4b-it",
+          "--host",
+          "0.0.0.0",
+          "--port",
+          "8000",
+          "--max-model-len",
+          "%%global.variables.MAX_MODEL_LEN%%",
+          "--gpu-memory-utilization",
+          "%%global.variables.GPU_MEM_UTIL%%",
+          "--max-num-seqs",
+          "%%global.variables.MAX_NUM_SEQS%%",
+          "--reasoning-parser",
+          "gemma4"
+        ],
+        "env": {
+          "VLLM_LOGGING_LEVEL": "INFO",
+          "HF_HUB_OFFLINE": "1"
+        },
+        "restart_policy": {
+          "policy": "on-failure",
+          "restart_tries": 3
+        },
+        "expose": [
+          {
+            "port": 8000,
+            "type": "api",
+            "health_checks": [
+              {
+                "type": "http",
+                "path": "/health",
+                "method": "GET",
+                "expected_status": 200,
+                "continuous": true
+              }
+            ]
+          }
+        ],
+        "resources": [
+          {
+            "type": "HF",
+            "target": "/models/gemma-4-26b-a4b",
+            "repo": "RedHatAI/gemma-4-26B-A4B-it-FP8-dynamic",
+            "files": [
+              "chat_template.jinja",
+              "config.json",
+              "generation_config.json",
+              "model.safetensors",
+              "processor_config.json",
+              "tokenizer.json",
+              "tokenizer_config.json"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "meta": {
+    "trigger": "dashboard",
+    "system_requirements": {
+      "vram_total_mb": 92160
+    }
+  }
+}

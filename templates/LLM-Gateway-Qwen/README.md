@@ -17,3 +17,13 @@ begins inside a reasoning block and closes it before the answer. Without a
 reasoning parser that whole block arrives as ordinary message content. `qwen3`
 splits it into `reasoning_content`, and it handles the missing opening tag
 because the template supplies it rather than the model.
+
+## Qwen3.6 27B
+
+Sized and measured on an RTX PRO 6000, where it earned more per card than any other model
+benchmarked. It serves long prompts, so time to first token is the trade: around five
+seconds at the concurrency it is calibrated for. That suits agents and batch work rather
+than interactive chat.
+
+Weights are the first-party `Qwen/Qwen3.6-27B-FP8`. Do not lower the declared VRAM without
+re-running the benchmark.
