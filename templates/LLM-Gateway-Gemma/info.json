@@ -1,0 +1,24 @@
+{
+  "id": "gateway-gemma",
+  "name": "Managed Gemma inference",
+  "icon": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg",
+  "category": [
+    "LLM Gateway",
+    "vLLM",
+    "LLM"
+  ],
+  "variants": [
+    {
+      "id": "26b-a4b",
+      "name": "Gemma 4 26B A4B",
+      "job_definition": "26b-a4b.json",
+      "inference": {
+        "model": "google/gemma-4-26b-a4b-it",
+        "context_length": 32768,
+        "max_output_tokens": 16384,
+        "op": "server",
+        "port": 8000
+      }
+    }
+  ]
+}

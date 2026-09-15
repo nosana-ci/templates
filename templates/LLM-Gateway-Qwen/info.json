@@ -19,6 +19,18 @@
         "op": "server",
         "port": 8000
       }
+    },
+    {
+      "id": "27b",
+      "name": "Qwen3.6 27B",
+      "job_definition": "27b.json",
+      "inference": {
+        "model": "qwen/qwen3.6-27b",
+        "context_length": 32768,
+        "max_output_tokens": 16384,
+        "op": "server",
+        "port": 8000
+      }
     }
   ]
 }
