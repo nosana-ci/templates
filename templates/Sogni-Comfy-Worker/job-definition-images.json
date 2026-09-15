@@ -1,0 +1,71 @@
+{
+  "version": "0.1",
+  "type": "container",
+  "meta": {
+    "trigger": "dashboard",
+    "system_requirements": {
+      "vram_total_mb": 15360
+    }
+  },
+  "global": {
+    "env": {
+      "NOSANA_GROUP_ID": "sogni-public-template",
+      "HEALTH_PROBE_PORT": "8001"
+    }
+  },
+  "ops": [
+    {
+      "type": "container/run",
+      "id": "resources",
+      "args": {
+        "image": "docker.io/sogni/nosana-worker-configurator@sha256:03409cc46b49cecf7164abd19801378a3303a669ac613561188df95334578287",
+        "cmd": [
+          "--comfyConfig",
+          "comfy?filter=krea2_turbo_fp8_scaled,dark_beast_krea2_fp8,krea2_identity_edit_v1_2",
+          "--comfyImage",
+          "comfy?cuda=13",
+          "--minRam",
+          "31"
+        ]
+      },
+      "results": {
+        "docker-image": "(?<=docker-image ).*",
+        "remote-resources-chunks": "(?<=remote-resources-chunk-\\d+ ).*"
+      }
+    },
+    {
+      "type": "container/run",
+      "id": "sogni-worker",
+      "args": {
+        "image": "docker.io/%%ops.resources.results.docker-image%%",
+        "gpu": true,
+        "env": {
+          "API_KEY": "REPLACE_WITH_YOUR_SOGNI_API_KEY",
+          "NFT_TOKEN_ID": "REPLACE_WITH_YOUR_FAST_WORKER_NFT_ID"
+        },
+        "restart_policy": "unless-stopped",
+        "resources": [
+          {
+            "__spread__": "%%ops.resources.results.remote-resources-chunks%%",
+            "chunked": true
+          }
+        ],
+        "expose": [
+          {
+            "port": 8001,
+            "type": "api",
+            "health_checks": [
+              {
+                "type": "http",
+                "path": "/startup",
+                "method": "GET",
+                "expected_status": 200,
+                "continuous": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
